@@ -62,6 +62,7 @@ const CategoryFilter: React.FC = () => {
 
   const handleClearCategory = () => {
     setSelectedCategory(null);
+    dispatch(updateFilterState({ name: "category", value: "" }));
   };
 
   return (

@@ -65,7 +65,7 @@ const Products = () => {
   }, [productIndex.favProducts]);
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 rounded-lg p-4">
+    <div className="grid mx-28 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-14 rounded-lg p-4">
       {productIndex.loading && <div>Loading...........</div>}
       {!productIndex.loading && productIndex.error && (
         <div>Error in fetching...........</div>
@@ -73,21 +73,33 @@ const Products = () => {
       {!productIndex.loading &&
         productIndex.filteredProducts.map((val, index) => {
           return (
-            <div key={val.id} className="relative">
+            <div key={val.id} className="relative group h-96 ">
               <Link
                 href="/card/[id]"
                 as={`/card/${val.id}`}
-                className={`p-2 text-blue-500 grid items-center bg-gray-80 border-gray-300 border-2 add-border-radius px-3 py-2 group overflow-hidden transition-transform duration-300 transform hover:-translate-y-1 hover:shadow-lg relative`}
+                className="col-span-1 text-blue-500 bg-white h-full grid items-end bg-boder-50 border-boder-200 border-2 add-border-radius group overflow-hidden transition-transform duration-300 transform hover:-translate-y-1 hover:shadow-lg relative"
               >
-                <div key={val.id}>
-                  <div className="title"></div>
-                  <div className="image">
-                    <img src={val.image} alt={val.title} />
+                <div
+                  key={val.id}
+                  className="flex px-1 pt-4 mt-3 h-full gap-4 justify-between"
+                >
+                  <div className="title text-md font-bold text-myColor-50 leading-tight w-2/3">
+                    {val.title}
+                  </div>
+                  <div className="price font-bold text-lg text-green-400  w-1/3">
+                    $ {val.price}
                   </div>
                 </div>
+                <div className="image flex justify-center">
+                  <img
+                    src={val.image}
+                    alt={val.title}
+                    className="h-150 w-200"
+                  />
+                </div>
               </Link>
-
-              <div className="add-to-fav group-hover:block absolute p-2 top-2 right-2 z-999">
+              <div className="before absolute inset-0 bg-black bg-opacity-20 opacity-0 transition-opacity duration-400 group-hover:opacity-100"></div>
+              <div className="add-to-fav hidden group-hover:block absolute top-1 right-2 transition-opacity duration-400">
                 <button
                   onClick={(e) => {
                     handleFav(val);
@@ -104,7 +116,7 @@ const Products = () => {
                       }}
                     />
                   ) : (
-                    <AiOutlineHeart style={{ fontSize: "30px" }} />
+                    <AiOutlineHeart color="red" style={{ fontSize: "30px" }} />
                   )}
                 </button>
               </div>

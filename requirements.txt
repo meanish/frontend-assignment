@@ -1,0 +1,6 @@
+1. npm install react-icons --save
+2.  npm install @reduxjs/toolkit react-redux redux @reduxjs/toolkit@next --save
+3. axios
+4. npm install next react-router-dom
+5.tailwind
+6.react-toastify

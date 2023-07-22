@@ -74,6 +74,13 @@ const addCartSlice = createSlice({
       const newItem = action.payload;
       state.cartProducts.push(newItem);
     },
+    removeCart: (state, action) => {
+      const Item = action.payload;
+      const filterItems = state.cartProducts.filter((val) => {
+        return val.id !== Item.id;
+      });
+      state.cartProducts = filterItems;
+    },
 
     totalPrice: (state, action) => {
       const items = action.payload;
@@ -83,8 +90,6 @@ const addCartSlice = createSlice({
       localStorage.setItem("totalprice", JSON.stringify(updateCart));
       state.totalAmount = updateCart;
     },
-
-  
   },
 
   //for api fetch when components renders
@@ -106,4 +111,4 @@ const addCartSlice = createSlice({
 
 // Export the slice and actions
 export { addCartSlice };
-export const { addToCart, totalPrice } = addCartSlice.actions;
+export const { addToCart, totalPrice, removeCart } = addCartSlice.actions;

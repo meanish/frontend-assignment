@@ -47,6 +47,7 @@ const initialState: {
   loading: boolean;
   error: string | null;
   filteredProducts: ProductState[];
+  InputFilter: ProductState[];
   favProducts: ProductState[];
   selectedOption: {
     category: string;
@@ -57,6 +58,7 @@ const initialState: {
   loading: false,
   error: null,
   filteredProducts: [], // Will store the filtered products
+  InputFilter: [],
   favProducts: getlocalProducts(),
   selectedOption: {
     category: "",
@@ -69,6 +71,27 @@ const productSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
+    searchProduct: (state, action) => {
+      const { input } = action.payload;
+      console.log("What input", input);
+      let { allProducts } = state;
+      let tempProducts = [...allProducts];
+
+      if (input) {
+        tempProducts = tempProducts.filter((currEle) => {
+          const lowerCaseVal = input.toLowerCase();
+          const lowerCaseTitle = currEle.title.toLowerCase();
+          const lowerCaseCategory = currEle.category.toLowerCase(); //case sensitive
+
+          return (
+            lowerCaseTitle.includes(lowerCaseVal) ||
+            lowerCaseCategory.includes(lowerCaseVal)
+          );
+        });
+      }
+
+      state.InputFilter = tempProducts;
+    },
     //state updates when changes in filteration
     updateFilterState: (
       state,
@@ -157,6 +180,7 @@ const productSlice = createSlice({
 // Export the slice and actions
 export { productSlice };
 export const {
+  searchProduct,
   updateFilterState,
   updateProductState,
   togglePrice,

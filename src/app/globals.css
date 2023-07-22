@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 .add-border-radius {
-  border-radius: 09px;
+  border-radius: 15px;
 }
-img {
-  width: 200px;
-  height: 200px;
+
+body {
+  background-color: #f7f6f1;
 }
