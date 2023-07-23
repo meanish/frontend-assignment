@@ -19,11 +19,11 @@ export const getProducts = createAsyncThunk(
 );
 
 const getlocalProducts = () => {
-  const localValue = JSON.parse(localStorage.getItem("favProducts")!);
-  if (localValue !== null) {
-    return localValue;
-  } else {
-    return [];
+  if (typeof window !== "undefined") {
+    // Perform localStorage action
+    const localValue = localStorage.getItem("favProducts");
+    const parsedValue = localValue ? JSON.parse(localValue) : [];
+    return parsedValue;
   }
 };
 

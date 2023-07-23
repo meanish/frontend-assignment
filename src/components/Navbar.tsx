@@ -1,3 +1,5 @@
+"use client";
+
 import { RootState } from "@/store";
 import { searchProduct } from "@/store/slices/productSlices";
 import Link from "next/link";
@@ -8,7 +10,7 @@ import Searchbar from "./Searchbar";
 
 const Navbar = () => {
   const dispatch = useDispatch();
-
+  const [cart, setCart] = useState([]);
   interface RootState {
     products: {
       favProducts: [];
@@ -24,6 +26,7 @@ const Navbar = () => {
   const favCount = useSelector(
     (state: RootState) => state.products.favProducts
   );
+  console.log("cartCount", cartCount);
 
   return (
     <nav className=" items-center justify-between grid grid-cols-1  px-5 sm:grid-cols-2 lg:grid-cols-12 gap-4  border-boder-200 border-2">
@@ -58,7 +61,7 @@ const Navbar = () => {
               <FiShoppingCart size={20} />
             </button>
           </Link>
-          {cartCount.length > 0 && (
+          {cartCount && cartCount.length > 0 && (
             <span className="absolute -top-1 -right-1 px-1 py-0 bg-red-500 text-white rounded-full text-xs">
               {cartCount.length}
             </span>

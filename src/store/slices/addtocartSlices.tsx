@@ -18,20 +18,18 @@ interface ProductState {
 }
 
 const getlocalValue = () => {
-  const localValue = JSON.parse(localStorage.getItem("addcart")!);
-  if (localValue !== null) {
-    return localValue;
-  } else {
-    return [];
+  if (typeof window !== "undefined") {
+    const localValue = localStorage.getItem("addcart");
+    const parsedValue = localValue ? JSON.parse(localValue) : [];
+    return parsedValue;
   }
 };
 
 const getTotal = () => {
-  const localValue = JSON.parse(localStorage.getItem("totalprice")!);
-  if (localValue !== 0) {
-    return localValue;
-  } else {
-    return 0;
+  if (typeof window !== "undefined") {
+    const localValue = localStorage.getItem("totalprice");
+    const parsedValue = localValue ? JSON.parse(localValue) : 0;
+    return parsedValue;
   }
 };
 
