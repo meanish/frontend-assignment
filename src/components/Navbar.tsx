@@ -47,7 +47,7 @@ const Navbar = () => {
               <FiHeart size={20} />
             </button>
           </Link>
-          {favCount.length > 0 && (
+          {favCount && favCount.length > 0 && (
             <span className="absolute -top-1 -right-1 px-1 py-0 bg-red-500 text-white rounded-full text-xs">
               {favCount.length}
             </span>

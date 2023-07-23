@@ -32,26 +32,27 @@ const Cart = () => {
             </tr>
           </thead>
           <tbody className="bg-myColor-100">
-            {cartData.cartProducts.map((val, index) => {
-              const { title, price, image } = val;
-              return (
-                <tr
-                  key={index}
-                  className="border-2 border-myColor-200 pl-2 py-4 mb-1 add-border-radius"
-                >
-                  <td>
-                    <img src={image} alt={title} className="w-14 h-14" />
-                  </td>
-                  <td className="text-md text-blue-500 pl-3">{title}</td>
-                  <td className="font-bold text-lg text-green-400">
-                    $ {price}
-                  </td>
-                  <td className="font-bold" onClick={() => handleDelete(val)}>
-                    Delete
-                  </td>
-                </tr>
-              );
-            })}
+            {cartData.cartProducts &&
+              cartData.cartProducts.map((val, index) => {
+                const { title, price, image } = val;
+                return (
+                  <tr
+                    key={index}
+                    className="border-2 border-myColor-200 pl-2 py-4 mb-1 add-border-radius"
+                  >
+                    <td>
+                      <img src={image} alt={title} className="w-14 h-14" />
+                    </td>
+                    <td className="text-md text-blue-500 pl-3">{title}</td>
+                    <td className="font-bold text-lg text-green-400">
+                      $ {price}
+                    </td>
+                    <td className="font-bold" onClick={() => handleDelete(val)}>
+                      Delete
+                    </td>
+                  </tr>
+                );
+              })}
           </tbody>
         </table>
       </div>

@@ -9,7 +9,7 @@ import { Dispatch } from "redux";
 import Products from "@/components/Products";
 import FilterIcons from "@/components/FilterIcons";
 
-export default function Home() {
+const Home = () => {
   const dispatch = useDispatch<Dispatch<any>>();
 
   useEffect(() => {
@@ -24,4 +24,12 @@ export default function Home() {
       <Products />
     </>
   );
-}
+};
+
+export default Home;
+
+export const getServerSideProps = async () => {
+  return {
+    props: {}, // Set props to an empty object to prevent pre-rendering
+  };
+};
